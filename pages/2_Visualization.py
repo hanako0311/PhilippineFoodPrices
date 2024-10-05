@@ -27,7 +27,7 @@ df = load_data()
 region = st.sidebar.multiselect(
     "SELECT REGION",
     options=df["#adm1+name"].unique(),
-    default=df[""].unique(),
+    default=df["#adm1+name"].unique(),
 )
 
 commodity = st.sidebar.multiselect(
