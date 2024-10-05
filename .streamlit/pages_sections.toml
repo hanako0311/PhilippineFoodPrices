@@ -1,0 +1,28 @@
+# First section for the main introduction page
+
+# Main menu section
+[[pages]]
+name = "Main menu"
+icon = ""
+is_section = true
+
+# Introduction section
+
+[[pages]]
+path = "pages/1_Introduction.py"
+name = "Introduction"
+icon = "🌍"
+
+# Visualizations section
+
+[[pages]]
+path = "pages/2_Visualization.py"
+name = "Food Prices Visualization"
+icon = ":chart_with_upwards_trend:"
+
+# Conclusions section
+
+[[pages]]
+path = "pages/3_Conclusions.py"
+name = "Conclusions"
+icon = "📝"
