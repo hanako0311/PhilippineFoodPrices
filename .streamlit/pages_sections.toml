@@ -9,20 +9,25 @@ is_section = true
 # Introduction section
 
 [[pages]]
-path = "pages/1_Introduction.py"
+path = "app_pages/1_Introduction.py"
 name = "Introduction"
 icon = "🌍"
+
+[[pages]]
+path = "app_pages/descriptive_statistics.py"
+name = "Descriptive Statistics"
+icon = "📈"
 
 # Visualizations section
 
 [[pages]]
-path = "pages/2_Visualization.py"
+path = "app_pages/2_Visualization.py"
 name = "Food Prices Visualization"
-icon = ":chart_with_upwards_trend:"
+icon = "📊"
 
 # Conclusions section
 
 [[pages]]
-path = "pages/3_Conclusions.py"
+path = "app_pages/3_Conclusions.py"
 name = "Conclusions"
 icon = "📝"
