@@ -7,7 +7,3 @@ backgroundColor="#2E2E2E"  # Dark mode background
 secondaryBackgroundColor="#373737"  # Dark mode container background
 textColor="#FFFFFF"  # Text color for dark mode
 
-[theme.light]
-backgroundColor="#FFFFFF"  # Light mode background
-secondaryBackgroundColor="#F5F5F5"  # Light mode container background
-textColor="#333333"  # Text color for light mode
