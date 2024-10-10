@@ -45,7 +45,7 @@ available_columns = df_display.columns.tolist()
 valid_default_columns = [col for col in default_columns if col in available_columns]
 
 # Tabs for dataset view and price percentiles
-tab1, tab2 = st.tabs(["Dataset", "Price Percentiles & Summary"])
+tab1, tab2 = st.tabs(["Dataset", "Price Summary & Distribution"])
 
 # Tab 1: Dataset Display
 with tab1:
@@ -59,52 +59,39 @@ with tab1:
         else:
             st.write("No columns selected.")
 
-# Tab 2: Price Percentiles & Summary
+# Tab 2: Price Summary & Distribution
 with tab2:
-    st.caption("Food Prices by Percentiles")
+    st.caption("Food Prices Summary and Distribution")
 
-    # Ensure that the 'Price (PHP)' column exists before calculating percentiles
+    # Ensure that the 'Price (PHP)' column exists before calculating statistics
     if "Price (PHP)" in df_display.columns:
         # Percentiles and Metrics Display
-        p1, p2, p3, p4, p5 = st.columns(5)
+        p1, p2, p3 = st.columns(3)
 
         with p1:
-            st.info("Percentile 25 %", icon="⏱")
+            st.info("25th Percentile", icon="⏱")
             st.metric(
                 label="PHP",
                 value=f"{np.percentile(df_display['Price (PHP)'], 25):,.2f}",
             )
 
         with p2:
-            st.info("Percentile 50 %", icon="⏱")
+            st.info("Median (50th Percentile)", icon="⏱")
             st.metric(
                 label="PHP",
                 value=f"{np.percentile(df_display['Price (PHP)'], 50):,.2f}",
             )
 
         with p3:
-            st.info("Percentile 75 %", icon="⏱")
+            st.info("75th Percentile", icon="⏱")
             st.metric(
                 label="PHP",
                 value=f"{np.percentile(df_display['Price (PHP)'], 75):,.2f}",
             )
 
-        with p4:
-            st.info("Percentile 100 %", icon="⏱")
-            st.metric(
-                label="PHP",
-                value=f"{np.percentile(df_display['Price (PHP)'], 100):,.2f}",
-            )
-
-        with p5:
-            st.info("Percentile 0 %", icon="⏱")
-            st.metric(
-                label="PHP", value=f"{np.percentile(df_display['Price (PHP)'], 0):,.2f}"
-            )
-
-        # Display number summary for numerical data
+        # Display descriptive summary for numerical data
         st.subheader("Descriptive Summary of Prices")
-        st.dataframe(df_display["Price (PHP)"].describe(), use_container_width=True)
+        st.write(df_display["Price (PHP)"].describe())
 
         # Adding a box plot for price distribution
         st.subheader("Price Distribution (Box Plot)")
@@ -113,7 +100,6 @@ with tab2:
 
     else:
         st.error("The 'Price (PHP)' column is missing from the dataset.")
-
 
 # Sidebar for additional analysis
 def categorical_analysis():
@@ -179,12 +165,10 @@ def categorical_analysis():
         else:
             with c1:
                 st.subheader("Numerical Summary of Prices")
-                st.dataframe(
-                    df_display["Price (PHP)"].describe(), use_container_width=True
-                )
+                st.write(df_display["Price (PHP)"].describe())
 
             with c2:
-                st.subheader("Total Sales")
+                st.subheader("Sum of prices")
                 total_sales = np.sum(df_display["Price (PHP)"])
                 avg_sales = np.average(df_display["Price (PHP)"])
                 st.metric(
@@ -196,7 +180,6 @@ def categorical_analysis():
 
     else:
         st.sidebar.error("No valid categorical columns available for analysis.")
-
 
 # Apply styles to metric cards
 style_metric_cards(
